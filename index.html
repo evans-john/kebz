@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calculator</title>
+	<style type="text/css">
+		#area{
+			width:300px;
+			height:250px;
+			background: #d4d7c6;
+		}
+		input{
+			width:250px;
+			height:30px;
+		}
+	</style>
+</head>
+<body>
+<center>
+	<div id="area">
+	<form>
+		<h1 id="txt">Pythogras Theory</h1>
+		<p></p>
+		<input type="text" placeholder="Enter a" id="txta">
+		<p></p>
+		<input type="text" placeholder="Enter b" id="txtb">
+		<p></p>
+		<input type="text" placeholder="Enter c" id="txtc">
+		<p></p>
+		<input type="button" value ="Get Uknown" onclick="find()">
+
+	</form>
+	</div>
+</center>
+
+<center>
+	<div id="area">
+	<form>
+		<h1 id="txt1">Trigonometry</h1>
+		<p></p>
+		<input type="text" placeholder="Enter angle" id="cts">
+		<p></p>
+		<input type="button" value="Get Cos" id="txtb" onclick="cos()">
+		<p></p>
+		<input type="button" value="Get tan" id="txtc" onclick="tan()">
+		<p></p>
+		<input type="button" value ="Get Sin" onclick="sin()">
+
+	</form>
+	</div>
+</center>
+
+
+<center>
+	<div id="area">
+	<form>
+		<h1 id="txt2">Area</h1>
+		<input type="button" value="Area of circle" id="txtb" onclick="circle()">
+		<p></p>
+		<input type="button" value="S.Area of sphere" id="txtc" onclick="sphere()">
+		<p></p>
+		<input type="button" value="S.Area of cone (open)" id="txtc" onclick="cone()">
+		<p></p>
+		<input type="button" value ="S.Area of frustrum" onclick="frustrum()">
+
+	</form>
+	</div>
+</center>
+
+
+
+<script type="text/javascript">
+function display(ans){
+	var ans1=ans.toFixed(4)
+	document.getElementById("txt").innerHTML=	ans1;
+
+}
+function pythograsa(b, c){
+	var newb=b**2;
+	var newc=c**2;
+	var ans=Math.sqrt(newc-newb)
+	display(ans)
+}
+
+function pythograsb(a, c){
+	var newa=a**2;
+	var newc=c**2;
+	var ans=Math.sqrt(newc-newa)
+	display(ans)
+}
+
+function pythograsc(b, a){
+	var newa=a**2;
+	var newb=b**2;
+	var ans=Math.sqrt(newa+newb)
+	display(ans)
+	return ans
+}
+
+function find(){
+	var a=document.getElementById("txta").value;
+	var b=document.getElementById("txtb").value;
+	var c=document.getElementById("txtc").value;
+	if (!a) {
+		pythograsa(b, c)
+	}else if(!b){
+		pythograsb(a, c)
+	}else if(!c){
+		pythograsc(a, b)
+	}else{
+		alert("Fill at least 2 fields")
+	}
+}
+
+
+function displays(ans){
+	var ans1=ans.toFixed(4)
+	document.getElementById("txt1").innerHTML=	ans1;
+
+}
+
+function convertangletoradian(angle){
+return angle*Math.PI/180;
+}
+
+function tan(angle){
+	var angle=document.getElementById('cts').value;
+	var ans=Math.tan(convertangletoradian(angle));
+	displays(ans)
+}
+
+function sin(angle){
+	var angle=document.getElementById('cts').value;
+	var ans=Math.sin(convertangletoradian(angle));
+	displays(ans)
+}
+
+function cos(angle){
+	var angle=document.getElementById('cts').value;
+	var ans=Math.cos(convertangletoradian(angle));
+	displays(ans)
+}
+
+
+function displayz(ans){
+	var ans1=ans.toFixed(2)
+	document.getElementById("txt2").innerHTML=	ans1;
+
+}
+function circle(radius){
+	var radius=prompt("Enter the radius: ")
+	var ans=3.142*(radius**2)
+	displayz(ans)
+}
+function sphere(){
+	var radius=prompt("Enter the radius: ")
+	var ans=4*3.142*(radius**2)
+	displayz(ans)
+}
+
+function cone(radius, length){
+	var radius=prompt("Enter the radius: ")
+	var length=prompt("Enter the slant length: ")
+	var ans=3.142*radius*length
+	displayz(ans)
+}
+
+function frustrum(radius, length, R){
+	var r=prompt("Enter the small radius: ")
+	var R=prompt("Enter the large radius: ")
+	var l=prompt("Enter the height of remaining frustrum: ")
+
+	var lsf=R/r;
+	var L=lsf*l;
+	var LL=parseFloat(L+l);
+	console.log(lsf)
+	console.log(L)
+    var newl=pythograsc(r, L)
+    var newL=pythograsc(R, LL)
+    console.log(newl)
+    console.log(newL)
+    var iarea=3.142*radius*newl
+    var narea=3.142*R*newL
+    console.log(iarea)
+    console.log(narea)
+	var ans=narea-iarea;
+	displayz(ans)
+}
+</script>
+</body>
+</html>
